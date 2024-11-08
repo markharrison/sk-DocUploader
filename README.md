@@ -14,14 +14,14 @@ Breaks document content into chunks, can configure:
 - number of words per chunk
 - number of words that overlap across two adjacent chunks
 
-Uploads to Vector stores including:
+Choice of Vector Stores including:
 
 - Azure AI Search
 - Azure CosmosDB NoSQL
 - Redis
 - In-memory vector store
 
-Uses Embedding models including:
+Choice of Embedding Models including:
 
 - Azure OpenAI e.g. text-embedding-ada-002
 - Huggingface e.g. sentence-transformers/all-MiniLM-L6-v2

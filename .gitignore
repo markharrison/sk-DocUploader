@@ -396,3 +396,10 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+
+# MH
+/Properties/
+/appsettings.Development.json
+/package-lock.json
+.vscode/
+.config/dotnet-tools.json

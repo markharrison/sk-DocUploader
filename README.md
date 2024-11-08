@@ -23,10 +23,10 @@ Uploads to Vector stores including:
 
 Uses Embedding models including:
 
-- Azure OpenAI e.g. text-embedding-ada-002"
+- Azure OpenAI e.g. text-embedding-ada-002
 - Huggingface e.g. sentence-transformers/all-MiniLM-L6-v2
 - Ollama e.g. nomic-embed-text
-- Bert Onxx e.g. text-embedding-ada-002"
+- Bert Onxx e.g. bge-micro-v2
 
 ## Configuration
 

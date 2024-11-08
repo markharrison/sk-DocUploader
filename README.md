@@ -26,7 +26,10 @@ Choice of Embedding Models including:
 - Azure OpenAI e.g. text-embedding-ada-002
 - Huggingface e.g. sentence-transformers/all-MiniLM-L6-v2
 - Ollama e.g. nomic-embed-text
-- Bert Onxx e.g. bge-micro-v2
+- BERT ONNX e.g. bge-micro-v2
+
+![alttext](./docs/diag1.jpg)
+
 
 ## Configuration
 

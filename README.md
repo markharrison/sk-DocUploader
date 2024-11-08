@@ -34,7 +34,7 @@ Options in appsettings.json, should be self explanatory.
 
 ### Azure
 
-This scripts may be useful to create Azure OpenAI, Document Intelligence and AI Search: [link](<https://github.com/markharrison/aidemo-create>)
+This script may be useful to create Azure OpenAI, Document Intelligence and AI Search: [link](<https://github.com/markharrison/aidemo-create>)
 
 ### Redis
 

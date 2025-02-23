@@ -20,31 +20,11 @@ namespace DocUploader
 
             AppSettings setx = new();
 
-            //var environmentName = Environment.GetEnvironmentVariable("DOTNET_ENVIRONMENT") ?? "development";
-            //var hostBuilder = Host.CreateApplicationBuilder(args);
-            //hostBuilder.Configuration
-            //    .SetBasePath(Directory.GetCurrentDirectory())
-            //    .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-            //    .AddJsonFile($"appsettings.{environmentName}.json", optional: true)
-            //    .AddEnvironmentVariables();
-
-            //var configuration = hostBuilder.Configuration;
-
-            //string docName = configuration["Document:Name"] ?? "";
-            //string dirPath = configuration["Document:DirPath"] ?? "";
-            //if (!dirPath.EndsWith("/")) dirPath += "/";
-            //string vectorStoreType = configuration["VectorStoreType"] ?? "";
-            //string embeddingModelType = configuration["EmbeddingModelType"] ?? "";
-
             var kernelBuilder = Kernel.CreateBuilder();
 
             switch (setx.embeddingModelType.ToLower())
             {
                 case "azopenai":
-                    //string azopwnaiApikey = configuration["AzOpenAI:ApiKey"] ?? "";
-                    //string azopwnaiEndpoint = configuration["AzOpenAI:Endpoint"] ?? "";
-                    //string azopenaiCCDeploymentname = configuration["AzOpenAI:ChatCompletionDeploymentName"] ?? "";
-                    //string azopenaiEmbeddingDeploymentname = configuration["AzOpenAI:EmbeddingDeploymentName"] ?? "";
                     Console.WriteLine($"Using Azure OpenAI {setx.azopenaiEmbeddingDeploymentname}");
                     kernelBuilder.AddAzureOpenAITextEmbeddingGeneration(setx.azopenaiEmbeddingDeploymentname, setx.azopwnaiEndpoint, setx.azopwnaiApikey);
                     break;
@@ -52,19 +32,14 @@ namespace DocUploader
                     // docker run -d -v ollama:/root/.ollama -p 11434:11434 --name ollama ollama/ollama
                     Console.WriteLine($"Using Ollama ");
                     //string ollamaEndpoint = configuration["Ollama:Endpoint"] ?? "";
-                    //string ollamaEmbeddingModelId = configuration["Ollama:EmbeddingModelId"] ?? "";
                     kernelBuilder.AddOllamaTextEmbeddingGeneration(setx.ollamaEmbeddingModelId, new Uri(setx.ollamaEndpoint));
                     break;
                 case "bertonnx":
                     Console.WriteLine("Using Bert embedding");  // download from "git clone https://huggingface.co/TaylorAI/bge-micro-v2"
-                    //string bertEmbeddingModelPath = configuration["BertOnnx:EmbeddingModelPath"]!;
-                    //string BertEmbeddingVocabPath = configuration["BertOnnx:EmbeddingVocabPath"]!;
                     kernelBuilder.AddBertOnnxTextEmbeddingGeneration(setx.bertEmbeddingModelPath, setx.bertEmbeddingVocabPath);
                     break;
                 case "huggingface":
                     Console.WriteLine("Using Hugging Face embedding");
-                    //string hfEndPoint = configuration["HuggingFace:EndPoint"]!;
-                    //string hfApikey = configuration["HuggingFace:Apikey"]!;
                     kernelBuilder.AddHuggingFaceTextEmbeddingGeneration(new Uri(setx.hfEndPoint), setx.hfApikey);
                     break;
                 default:
@@ -81,8 +56,6 @@ namespace DocUploader
                     break;
                 case "azaisearch":
                     Console.WriteLine("Using Azure AI Search");
-                    //string azaisearchEndpoint = configuration["AzAISearch:Endpoint"] ?? "";
-                    //string azaisearchApikey = configuration["AzAISearch:ApiKey"] ?? "";
                     kernelBuilder.AddAzureAISearchVectorStore(new Uri(setx.azaisearchEndpoint), new AzureKeyCredential(setx.azaisearchApikey));
                     break;
                 case "redis":
@@ -92,8 +65,6 @@ namespace DocUploader
                     break;
                 case "cosmosdb-nosql":
                     Console.WriteLine("Using cosmosdb-nosql");
-                    //string cosmosdbConnectionString = configuration["CosmosDB:ConnectionString"] ?? "";
-                    //string cosmosdbDatabaseName = configuration["CosmosDB:DatabaseName"] ?? "";
                     kernelBuilder.AddAzureCosmosDBNoSQLVectorStore(setx.cosmosdbConnectionString, setx.cosmosdbDatabaseName);
                     break;
                 default:
